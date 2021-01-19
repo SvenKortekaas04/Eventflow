@@ -5,8 +5,6 @@ Eventflow provides functionalities for event-based applications. It's lightweigh
 ## Table of contents
 
   - [Getting Started](#getting-started)
-  - [Running the tests](#running-the-tests)
-  - [Usage](#usage)
   - [Versioning](#versioning)
   - [Authors](#authors)
   - [License](#license)

@@ -9,7 +9,7 @@ from typing import (
 
 class Event:
     """
-    The ``Event`` class represents an event in the event bus. 
+    The `Event` class represents an event in the event bus. 
 
     It contains the associated event type, as well as optional 
     data and a timestamp when the event was fired.

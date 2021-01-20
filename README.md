@@ -20,7 +20,13 @@ Eventflow provides functionalities for event-based applications. It's lightweigh
 * Clone this repository
 
 ```
-git clone https://github.com/SvenKortekaas04/Eventflow.git
+$ git clone https://github.com/SvenKortekaas04/Eventflow.git
+```
+
+* After downloading and unpacking it, you can install it using:
+
+```
+$ pip install .
 ```
 
 ## Versioning

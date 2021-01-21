@@ -3,6 +3,7 @@ import datetime
 from typing import (
     Callable,
     Dict,
+    List,
     Optional
 )
 
@@ -74,7 +75,7 @@ class EventBus:
         Create a new EventBus instance.
         """
 
-        self._events = defaultdict(list)
+        self._events = defaultdict(list)  # type: Dict[Any, Set[Callable]]
 
     def __len__(self) -> int:
         """
@@ -117,7 +118,6 @@ class EventBus:
     def add_listener(self, event_type: str, listener: Callable) -> None:
         """
         Add a listener to a specific event type.
-
         :param event_type: The type of event
         :type event_type: str
         :param listener: A function
@@ -129,7 +129,6 @@ class EventBus:
     def remove_listener(self, event_type: str, listener: Callable) -> None:
         """
         Remove a listener of a specific event type.
-
         :param event_type: The type of event
         :type event_type: str
         :param listener: A function
@@ -182,3 +181,31 @@ class EventBus:
 
         for f in self._events[event_type]:
             f(event=_event.as_dict())
+
+    def fire_multiple(
+        self,
+        event_types: List[str],
+        data: Optional[Dict] = {},
+        timestamp: Optional[datetime.datetime.now] = datetime.datetime.now(tz=datetime.timezone.utc)
+    ) -> None:
+        """
+        Fire multiple events. This will fire every listener. Synchronous.
+
+        :param event_types: The types of events
+        :type event_types: List[str]
+        :param data: The data sent with the event, defaults to {}
+        :type data: Optional[Dict], optional
+        :param timestamp: The timestamp when the event was fired, defaults to datetime.datetime.now(tz=datetime.timezone.utc)
+        :type timestamp: Optional[datetime.datetime.now], optional
+        :raises ValueError: If the argument `event_types` is of the wrong type.
+        """
+
+        if not isinstance(event_types, List):
+            raise ValueError("Argument `event_types` must be of type list.")
+
+        for event_type in event_types:
+            # Create an `Event` object
+            _event = Event(event_type, data, timestamp)
+
+            for f in self._events[event_type]:
+                f(event=_event.as_dict())

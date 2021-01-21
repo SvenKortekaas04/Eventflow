@@ -51,6 +51,18 @@ def test_fire(bus: EventBus):
   bus.remove_listener(event_type="new:patient", listener=create_medical_record)
 
 
+def test_fire_multiple(bus: EventBus):
+  @bus.listen(event_type="1")
+  def func(event):
+    print("First!")
+
+  @bus.listen(event_type="2")
+  def func(event):
+    print("Second!")
+
+  bus.fire_multiple(event_types=["1", "2"])
+
+
 def test_listen(bus: EventBus):
   @bus.listen(event_type="test")
   def func(event):
@@ -66,4 +78,3 @@ def test_listeners(bus: EventBus):
 
   print(bus.listeners)
   bus.remove_listener(event_type="new:patient", listener=create_medical_record)
-  

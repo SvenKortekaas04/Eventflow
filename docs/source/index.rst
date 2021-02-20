@@ -1,7 +1,7 @@
 Welcome to Eventflow!
 =====================
 
-Welcome to Eventflow, your tool for building event-based applications.
+Welcome to Eventflow, the tool for building event-based applications.
 
 User’s Guide
 ------------
@@ -11,6 +11,7 @@ User’s Guide
    
    introduction
    getting-started
+   usage
 
 API Reference
 -------------
@@ -24,3 +25,8 @@ Additional Notes
 ----------------
 
 See the `license <https://github.com/SvenKortekaas04/Eventflow/blob/main/LICENSE>`_ for legal information governing this project.
+
+.. toctree::
+   :maxdepth: 2
+
+   changelog

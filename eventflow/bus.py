@@ -118,6 +118,7 @@ class EventBus:
     def add_listener(self, event_type: str, listener: Callable) -> None:
         """
         Add a listener to a specific event type.
+
         :param event_type: The type of event
         :type event_type: str
         :param listener: A function
@@ -129,6 +130,7 @@ class EventBus:
     def remove_listener(self, event_type: str, listener: Callable) -> None:
         """
         Remove a listener of a specific event type.
+        
         :param event_type: The type of event
         :type event_type: str
         :param listener: A function

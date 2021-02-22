@@ -7,5 +7,6 @@ easy to learn. It is written in pure Python and has no external dependencies.
 """
 
 from .bus import EventBus, Event
+from .version import __version__
 
 __all__ = ("EventBus", "Event", "__version__")

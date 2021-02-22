@@ -25,14 +25,14 @@ class Event:
     :type timestamp: datetime.datetime.now
     """
 
-    def __init__(self, event_type: str, data: Optional[Dict] = {}, timestamp: Optional[datetime.datetime.now] = datetime.datetime.now(tz=datetime.timezone.utc)) -> None:
+    def __init__(self, event_type: str, data: Optional[Dict] = {}) -> None:
         """
         Initialize a new event object.
         """
 
         self.event_type = event_type
         self.data = data
-        self.timestamp = timestamp
+        self.timestamp = datetime.datetime.now(tz=datetime.timezone.utc)
 
     def __repr__(self) -> str:
         """
@@ -75,7 +75,7 @@ class EventBus:
         Create a new EventBus instance.
         """
 
-        self._events = defaultdict(list)  # type: Dict[Any, Set[Callable]]
+        self._events = defaultdict(list)  # type: Dict[Any, List[Callable]]
 
     def __len__(self) -> int:
         """
@@ -164,8 +164,7 @@ class EventBus:
     def fire(
         self,
         event_type: str,
-        data: Optional[Dict] = {},
-        timestamp: Optional[datetime.datetime.now] = datetime.datetime.now(tz=datetime.timezone.utc)
+        data: Optional[Dict] = {}
     ) -> None:
         """
         Fire an event. This will fire every listener. Synchronous.
@@ -179,7 +178,7 @@ class EventBus:
         """
 
         # Create an `Event` object
-        _event = Event(event_type, data, timestamp)
+        _event = Event(event_type, data)
 
         for f in self._events[event_type]:
             f(event=_event.as_dict())
@@ -187,8 +186,7 @@ class EventBus:
     def fire_multiple(
         self,
         event_types: List[str],
-        data: Optional[Dict] = {},
-        timestamp: Optional[datetime.datetime.now] = datetime.datetime.now(tz=datetime.timezone.utc)
+        data: Optional[Dict] = {}
     ) -> None:
         """
         Fire multiple events. This will fire every listener. Synchronous.
@@ -207,7 +205,7 @@ class EventBus:
 
         for event_type in event_types:
             # Create an `Event` object
-            _event = Event(event_type, data, timestamp)
+            _event = Event(event_type, data)
 
             for f in self._events[event_type]:
                 f(event=_event.as_dict())

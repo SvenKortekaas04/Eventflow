@@ -24,31 +24,31 @@ def create_medical_record(event):
 
 def test_add_listener(bus: EventBus):
   assert len(bus) == 0
-  bus.add_listener(event_type="new:patient", listener=create_medical_record)
+  bus.append(event_type="new:patient", listener=create_medical_record)
   assert len(bus) > 0
 
-  bus.remove_listener(event_type="new:patient", listener=create_medical_record)
+  bus.remove(event_type="new:patient", listener=create_medical_record)
 
 
 def test_remove_listener(bus: EventBus):
-  bus.add_listener(event_type="new:patient", listener=create_medical_record)
+  bus.append(event_type="new:patient", listener=create_medical_record)
   
   assert len(bus) > 0
-  bus.remove_listener(event_type="new:patient", listener=create_medical_record)
+  bus.remove(event_type="new:patient", listener=create_medical_record)
   assert len(bus) == 0
 
 
 def test_len(bus: EventBus):
-  bus.add_listener(event_type="new:patient", listener=create_medical_record)
+  bus.append(event_type="new:patient", listener=create_medical_record)
   assert len(bus) > 0
-  bus.remove_listener(event_type="new:patient", listener=create_medical_record)
+  bus.remove(event_type="new:patient", listener=create_medical_record)
   assert len(bus) == 0
 
 
 def test_fire(bus: EventBus):
-  bus.add_listener(event_type="new:patient", listener=create_medical_record)
+  bus.append(event_type="new:patient", listener=create_medical_record)
   bus.fire(event_type="new:patient", data={"patient_id": "1"})
-  bus.remove_listener(event_type="new:patient", listener=create_medical_record)
+  bus.remove(event_type="new:patient", listener=create_medical_record)
 
 
 def test_fire_multiple(bus: EventBus):
@@ -73,8 +73,8 @@ def test_listen(bus: EventBus):
 
 def test_listeners(bus: EventBus):
   assert bus.listeners == {}
-  bus.add_listener(event_type="new:patient", listener=create_medical_record)
+  bus.append(event_type="new:patient", listener=create_medical_record)
   assert bus.listeners != {}
 
   print(bus.listeners)
-  bus.remove_listener(event_type="new:patient", listener=create_medical_record)
+  bus.remove(event_type="new:patient", listener=create_medical_record)

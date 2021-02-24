@@ -48,11 +48,11 @@ To assign a function as a listener, you can use a decorator. It takes an event t
     def func(event):
         ...
 
-If you prefer to use a function you can use :py:meth:`eventflow.EventBus.add_listener`.
+If you prefer to use a function you can use :py:meth:`eventflow.EventBus.append`.
 
 .. code-block:: python
 
-    >>> bus.add_listener(event_type="...", listener=func)
+    >>> bus.append(event_type="...", listener=func)
 
 Now you can get all listeners stored in the event bus.
 
@@ -65,7 +65,7 @@ You can also remove listeners from the event bus if you no longer need them.
 
 .. code-block:: python
 
-    >>> bus.remove_listener(event_type="...", listener=func)
+    >>> bus.remove(event_type="...", listener=func)
 
 Finally, once listeners have been added to the event bus, you can trigger them by calling the event type.
 

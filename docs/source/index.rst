@@ -11,7 +11,6 @@ User’s Guide
    
    introduction
    getting-started
-   usage
 
 API Reference
 -------------

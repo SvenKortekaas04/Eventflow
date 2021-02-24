@@ -12,10 +12,24 @@ class Event:
     """
     The `Event` class represents an event in the event bus. 
 
-    It contains the associated event type, as well as optional 
-    data and a timestamp when the event was fired.
+    An `Event` object consists of metadata, data about data, and optional data. The 
+    metadata comprises an event type, which indicates to what type of event it belongs, 
+    and a timestamp, which indicates the exact date and time the event was fired. The 
+    timestamp is set according to the UTC time zone.
 
-    A simple ``dict`` is used to store optional data.
+    .. admonition:: Event structure
+
+        An event is constructed and modeled to an event structure in JSON format like this:
+
+        .. code-block:: json
+
+            {
+                "metadata": {
+                    "event_type": "...",
+                    "timestamp": "..."
+                },
+                "data": {}
+            }
 
     :param event_type: The type of event.
     :type event_type: str
@@ -53,9 +67,11 @@ class Event:
         """
 
         return {
-            "event_type": self.event_type,
-            "data": self.data,
-            "timestamp": self.timestamp
+            "metadata": {
+                "event_type": self.event_type,
+                "timestamp": self.timestamp
+            },
+            "data": self.data
         }
 
 
@@ -115,9 +131,9 @@ class EventBus:
 
         return {event_type: len(listeners) for event_type, listeners in self._events.items()}
 
-    def add_listener(self, event_type: str, listener: Callable) -> None:
+    def append(self, event_type: str, listener: Callable) -> None:
         """
-        Add a listener to a specific event type.
+        Append a listener to a specific event type.
 
         :param event_type: The type of event
         :type event_type: str
@@ -127,7 +143,7 @@ class EventBus:
 
         self._events[event_type].append(listener)
 
-    def remove_listener(self, event_type: str, listener: Callable) -> None:
+    def remove(self, event_type: str, listener: Callable) -> None:
         """
         Remove a listener of a specific event type.
         

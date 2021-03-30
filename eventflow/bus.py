@@ -1,5 +1,6 @@
 from collections import defaultdict
 import datetime
+import pytz
 from typing import (
     Callable,
     Dict,
@@ -31,13 +32,21 @@ class Event:
                 "data": {}
             }
 
+    .. admonition:: Customization
+
+        For customization, the following class variables can be set:
+        
+        - ``default_timezone``. Defines the The timezone that is used by default to create a timestamp for the specific event.
+
     :param event_type: The type of event.
     :type event_type: str
     :param data: The data sent with the event.
     :type data: dict
-    :param timestamp: The timestamp when the event was fired.
-    :type timestamp: datetime.datetime.now
     """
+
+    # The timezone that is used by default to 
+    # create a timestamp for the specific event
+    default_timezone: str = pytz.utc.zone
 
     def __init__(self, event_type: str, data: Optional[Dict] = {}) -> None:
         """
@@ -46,7 +55,7 @@ class Event:
 
         self.event_type = event_type
         self.data = data
-        self.timestamp = datetime.datetime.now(tz=datetime.timezone.utc)
+        self.timestamp = datetime.datetime.now(tz=pytz.timezone(self.default_timezone))
 
     def __repr__(self) -> str:
         """
@@ -84,7 +93,16 @@ class EventBus:
     For event management, a ``dict`` is used to store the event type 
     with a list of listeners associated to the event type. The listeners 
     are accessible via the name of the event type.
+
+    .. admonition:: Customization
+
+        For customization, the following class variables can be set:
+        
+        - ``event_class``. Defines the class that will be used to create event instances.
     """
+
+    # The class that will be used to create event instances
+    event_class = Event
 
     def __init__(self) -> None:
         """

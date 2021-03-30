@@ -12,7 +12,7 @@ It's recommended to use the latest version of Python. Eventflow supports Python 
 Dependencies
 ^^^^^^^^^^^^
 
-Eventflow has no external dependencies.
+- pytz
 
 Install Eventflow
 ^^^^^^^^^^^^^^^^^

@@ -207,8 +207,6 @@ class EventBus:
         :type event_type: str
         :param data: The data sent with the event, defaults to {}
         :type data: Optional[Dict], optional
-        :param timestamp: The timestamp when the event was fired, defaults to datetime.datetime.now(tz=datetime.timezone.utc)
-        :type timestamp: Optional[datetime.datetime.now], optional
         """
 
         # Create an `Event` object
@@ -229,8 +227,6 @@ class EventBus:
         :type event_types: List[str]
         :param data: The data sent with the event, defaults to {}
         :type data: Optional[Dict], optional
-        :param timestamp: The timestamp when the event was fired, defaults to datetime.datetime.now(tz=datetime.timezone.utc)
-        :type timestamp: Optional[datetime.datetime.now], optional
         :raises ValueError: If the argument `event_types` is of the wrong type.
         """
 

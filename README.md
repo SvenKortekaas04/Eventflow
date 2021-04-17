@@ -20,7 +20,7 @@ Eventflow provides functionalities for event-based applications. It's lightweigh
 * Clone this repository
 
 ```
-$ git clone https://github.com/SvenKortekaas04/Eventflow.git
+$ git clone https://github.com/SvenKortekaas04/eventflow.git
 ```
 
 * After downloading and unpacking it, you can install it using:
@@ -31,13 +31,13 @@ $ pip install .
 
 ## Versioning
 
-This project makes use of [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/SvenKortekaas04/Eventflow/tags).
+This project makes use of [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/SvenKortekaas04/eventflow/tags).
 
 ## Authors
 
 * **Sven Kortekaas** - [SvenKortekaas04](https://github.com/SvenKortekaas04)
 
-See also the list of [contributors](https://github.com/SvenKortekaas04/Eventflow/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/SvenKortekaas04/eventflow/contributors) who participated in this project.
 
 ## License
 
